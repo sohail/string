@@ -1,4 +1,4 @@
-/* String/allocator.hh
+/* src/allocator.hh
    Written by, Sohail Qayum Malik[sqm@hackers.pk] */
 
 #include<stdexcept>

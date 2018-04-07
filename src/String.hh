@@ -1,4 +1,4 @@
-/* String/String.hh
+/* src/String.hh
    Written by, Sohail Qayum Malik[sqm@hackers.pk] */
 
 #include "allocator.hh"
@@ -646,8 +646,8 @@ class String {
 
          typename _T::int_type ret = size() - ref.size();
 
-         if ( !ret ) {
-
+         if ( !ret ) 
+	 {
             ret = _T::compare(data(), ref.data(), size());    
          }
 

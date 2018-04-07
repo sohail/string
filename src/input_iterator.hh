@@ -1,4 +1,4 @@
-/* String/input_iterator.hh
+/* src/input_iterator.hh
    Written by, Sohail Qayum Malik[sqm@hackers.pk] */
 
 #include <iterator>

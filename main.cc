@@ -1,8 +1,11 @@
-/* main.cc */
+/*
+ * main.cc 
+ * sqm@hackers.pk
+*/
 
 #include <iostream>
 
-#include "String.hh"
+#include "src/String.hh"
 
 using namespace::cc_tokenizer;
 
