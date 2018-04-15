@@ -581,7 +581,7 @@ class String {
       
          size_type ret = String<_E, _T, _A>::npos;
          
-         if ( pos < size() && str.size() <= size() ) {
+         if ( pos < size() && str.size() <= (size() - pos) ) {
          
             size_type i = pos, idx = pos, j = 0;
             
