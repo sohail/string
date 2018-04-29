@@ -461,13 +461,37 @@ class String {
       }
       
       /* Modifiers begin here */
+      /* -------------------- */
+      String<_E, _T, _A>& erase(size_type pos = 0, size_type len = npos) throw(std::out_of_range)
+      {
+          /* pos, originates at zero */
+	  /* TODO, consider using capacity() in place of size() */
+          if (pos + len > size())
+	  {
+	      throw std::out_of_range((String<_E, _T, _A>("Index(pos + len) = ") + String<_E, _T, _A>(pos + len) + String<_E, _T, _A>(" is out of the upper-bound of the string(where upper-bound = ") + String<_E, _T, _A>(size()) + String<_E, _T, _A>(")")).c_str());
+	  }
+
+	  allocator<_E> alloc_obj;
+	  pointer new_str = alloc_obj.allocate(size() - len);
+
+	  _T::copy(new_str, str, pos);
+	  _T::copy(new_str + pos, str + pos + len, size() - (pos + len));
+
+	  alloc_obj.deallocate(str);
+	  size_of_str = size() - len;
+	  capacity_of_str = size_of_str;
+	  str = new_str;
+
+          return *this;
+      }
+
       /* 
        * pos, position of the first character of type _T to be replaced. If it is greater than the size/length of the string then out_of_range exception is thrown
        * len, number of characters to be replaced with the "_T c". If string is shorter, as many characters as possible are replaced. A value of String<...>::npos indicates all characters untill the end of string(The sub-string of the whole string relative to "pos" that will be replaced by the "n" copies of the "c")
        * n, size of "_T c"(number of characters to copy)
        * c, character value repeated n times
        */ 
-      String<_E, _T, _A>& replace(size_type pos, size_type len, size_type n, _E c ) throw(std::out_of_range) {
+      String<_E, _T, _A>& replace(size_type pos, size_type len, size_type n, _E c) throw(std::out_of_range) {
 
          /* pos, originates at zero */
 	 /* TODO, consider using capacity() in place of size() */
