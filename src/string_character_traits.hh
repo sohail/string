@@ -20,14 +20,14 @@ Each set of character traits is specified as a template specialization of this c
 namespace cc_tokenizer {
 
 /* The template specialization for char type */
-template <typename _E>
+template <typename E>
 struct string_character_traits;
 
 template<>
 struct string_character_traits<char> {	
 
-   typedef	char					   _E;
-   typedef	_E					   char_type;
+   typedef	char					   E;
+   typedef	E					   char_type;
    
    /* Where INT_T is a type that can represent all the valid characters representable by a char_type plus an end-of-file value (eof) which is compatible with iostream class member functions */
    typedef  	int 					   int_type;
@@ -126,8 +126,8 @@ struct string_character_traits<char> {
 template<>
 struct string_character_traits<wchar_t> {
    
-   typedef	wchar_t					   _E;
-   typedef	_E					   char_type;
+   typedef	wchar_t					   E;
+   typedef	E					   char_type;
    
    /* Where INT_T is a type that can represent all the valid characters representable by a char_type plus an end-of-file value (eof) which is compatible with iostream class member functions */
    typedef	wint_t					   int_type;	

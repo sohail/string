@@ -10,11 +10,11 @@
 
 namespace cc_tokenizer {
 
-template <typename _E>
+template <typename E>
 class allocator {
 
    public:
-      typedef	_E			  value_type;
+      typedef	E			  value_type;
       typedef	value_type*		  pointer;
       typedef	const value_type* 	  const_pointer;
       typedef	value_type&		  reference;
@@ -29,7 +29,7 @@ class allocator {
 
       size_type max_size(void) const {
     
-         return (static_cast<size_type>(0) + static_cast<size_type>(-1)) / sizeof(_E); 
+         return (static_cast<size_type>(0) + static_cast<size_type>(-1)) / sizeof(E); 
       }
       
       pointer allocate(const size_type n) const throw(std::bad_alloc, std::length_error) {
@@ -43,7 +43,7 @@ class allocator {
                throw std::length_error("cc_tokenizer::allocator<>::allocate() - Integer overflow.");
             }
          
-            ptr = malloc( n * sizeof(_E) );
+            ptr = malloc( n * sizeof(E) );
          
             if ( ptr == NULL ) {
          
