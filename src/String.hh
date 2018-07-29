@@ -6,8 +6,8 @@
 #include "string_character_traits.hh"
 
 /* Include guards */
-#ifndef	CCTOKENIZER_STRING_HH
-#define	CCTOKENIZER_STRING_HH
+#ifndef	CC_TOKENIZER_STRING_HH
+#define	CC_TOKENIZER_STRING_HH
 
 namespace cc_tokenizer {
 
