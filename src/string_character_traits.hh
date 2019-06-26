@@ -75,6 +75,125 @@ struct string_character_traits<char> {
       return 0;
    }
 
+   static char_type toUpper(char_type ch)
+   {
+      if (ch > 0x60 && ch < 0x7B)
+      {
+         ch = ch - 0x20;
+      }
+
+      return ch;
+   }
+
+   static int compare(const_pointer compared, const_pointer comparing, size_type n) {
+   
+      int ret = 0; 
+   
+      for ( size_type i = 0; i < n; i++ ) {
+	  	    
+         if ( gt(compared[i], comparing[i]) ) {
+		 
+            ret = 1;			
+	    break;
+         }		 
+		 
+         if ( lt(compared[i], comparing[i]) ) {
+		 
+	    ret = -1;			
+	    break;
+	 }	  
+      }
+          
+      return ret;
+   }
+   
+   static size_type length(const_pointer s) {
+
+      size_type i = 0;
+
+      for (; s[i] != eos();)
+          i++; 
+	 
+	  return i;
+   }
+
+   static pointer copy(pointer dst, const_pointer src, size_type n) {
+
+      size_type i = 0;
+
+	  for (;i < n;) {
+
+             dst[i] = src[i]; 
+             i++;
+	  }
+
+	  return dst;       
+   }
+
+};
+
+template<>
+struct string_character_traits<unsigned char> {	
+
+   typedef	unsigned char					   E;
+   typedef	E					   char_type;
+   
+   /* Where INT_T is a type that can represent all the valid characters representable by a char_type plus an end-of-file value (eof) which is compatible with iostream class member functions */
+   typedef  	int 					   int_type;
+   
+   typedef	allocator<char_type>::size_type		   size_type;
+   typedef	allocator<char_type>::pointer		   pointer;
+   typedef	allocator<char_type>::const_pointer        const_pointer;
+   typedef	allocator<char_type>::reference		   reference;
+   typedef	allocator<char_type>::const_reference      const_reference;
+
+   static void assign(char_type& c1, char_type& c2) {
+
+      c1 = c2;   	
+   }
+      
+   static bool eq(const_reference x, const_reference y) {
+    	
+      return x == y;
+   }
+
+   static bool ne(const_reference x, const_reference y) {
+ 
+	  return ! eq(x, y);   
+   }
+   
+   static bool lt(const_reference x, const_reference y) {
+   
+     return x < y ; 
+   }
+   
+   /* ! lt() does not automatically mean gt(), that is why the definition seems incomplete. Just don't forget to use the ne() method as well */
+   static bool gt(const_reference x, const_reference y) {
+   
+      return x > y;
+   }
+
+   static char_type eos(void) {
+
+      return '\0';
+   }
+   
+   /* Returns the value used as end-of-file indicator. This value is a value of type int_type such that it does not compare equal to the int_type equivalents of any valid character value */
+   static int_type eof(void) {
+   
+      return 0;
+   }
+
+   static char_type toUpper(char_type ch)
+   {
+      if (ch > 0x60 && ch < 0x7B)
+      {
+         ch = ch - 0x20;
+      }
+
+      return ch;
+   }
+
    static int compare(const_pointer compared, const_pointer comparing, size_type n) {
    
       int ret = 0; 

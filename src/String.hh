@@ -31,6 +31,38 @@ class String {
       /* Constructors, default constructible */
       String(void) : str(NULL), size_of_str(size_type(0)), capacity_of_str(size_type(0)) {
       }
+
+/*
+      String(size_type n) {
+
+          allocator<E> alloc_obj;
+
+          try {
+
+              str = alloc_obj.allocate(n);
+
+              if ( str ) {                           
+                  size_of_str = n;
+                  capacity_of_str = n;
+               }
+               else {            
+                    str = NULL;
+                    size_of_str = size_type(0);
+                    capacity_of_str = size_type(0);
+               }
+
+          }
+          catch (std::bad_alloc& e) {
+            size_of_str = size_type(0);
+            capacity_of_str = size_type(0); 
+         }
+         catch(std::length_error& e) {         
+            str = NULL;
+            size_of_str = size_type(0);
+            capacity_of_str = size_type(0);
+         }    
+      }
+*/      
      
       /* Constructors, copy constructor */ 
       String(const String<E, T, A>& ref) {
@@ -206,6 +238,8 @@ class String {
                
                size_of_str = n;
                capacity_of_str = n;
+
+               //std::cout<<"DIDO = capacity = "<<capacity_of_str<<", size = "<<size_of_str<<std::endl;
             }
          }
          catch(std::bad_alloc& e) {
@@ -395,6 +429,37 @@ class String {
          
       }
                   
+      void operator+=(E c)
+      {
+         //std::cout<<"-> "<<c<<std::endl;
+
+         /*if (capacity())
+         {
+            if (capacity() > size())
+         }*/
+
+         if (capacity() > 0) 
+         {
+            //str[size() - capacity()] = c;
+            T::assign(str[size() - capacity()], c);
+            capacity_of_str -= 1;
+         }
+
+         //std::cout<<"capacity_of_str = "<<capacity_of_str<<std::endl;
+      }
+
+      void operator-=(size_type n)
+      {
+         //std::cout<<"capacity = "<<capacity_of_str<<", size = "<<size()<<std::endl;   
+
+         if ((capacity_of_str + n) <= size_of_str)
+         {
+            capacity_of_str += n;
+         }
+
+         //std::cout<<"capacity = "<<capacity_of_str<<", size = "<<size_of_str<<std::endl; 
+      }
+
       String<E, T, A>& operator+(const String<E, T, A>& ref) throw(std::length_error) {
       
          pointer new_str;
@@ -690,6 +755,18 @@ class String {
          String<E, T, A> str(*this, pos, n);
 
          return str.compare(ref);
+      }
+
+      void toUpper(void)
+      {
+         size_type i = 0;
+
+         for (;i < size();)
+         {
+            str[i] = T::toUpper(str[i]);
+
+            i++;
+         }         
       }
    
    private:      
