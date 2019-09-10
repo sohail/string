@@ -1,5 +1,5 @@
 /* src/String.hh
-   Written by, Sohail Qayum Malik[sqm@hackers.pk] */
+   Written by, Sohail Qayum Malik */
 
 #include "allocator.hh"
 #include "input_iterator.hh"   

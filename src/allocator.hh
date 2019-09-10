@@ -1,5 +1,5 @@
 /* src/allocator.hh
-   Written by, Sohail Qayum Malik[sqm@hackers.pk] */
+   Written by, Sohail Qayum Malik */
 
 #include<stdexcept>
 #include<stdlib.h>

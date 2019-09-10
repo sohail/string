@@ -1,5 +1,5 @@
 /* src/string_character_traits.hh
-   Written by, Sohail Qayum Malik[sqm@hackers.pk] */
+   Written by, Sohail Qayum Malik */
 
 /*
 Character traits?
