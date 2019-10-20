@@ -1,6 +1,5 @@
 /*
  * main.cc 
- * sqm@hackers.pk
 */
 
 #include <iostream>
